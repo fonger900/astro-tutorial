@@ -1,17 +1,23 @@
 ---
-const pageTitle = 'About me'
+import '../styles/global.css'
+
+const pageTitle = "About me";
 
 const identity = {
-    firstName: 'Phong',
-    country: 'Vietnam',
-    occupation: 'Web developer',
-    hobbies: ['game','comic']
-}
+  firstName: "Phong",
+  country: "Vietnam",
+  occupation: "Web developer",
+  hobbies: ["game", "comic"],
+};
 
-const skills = ['Vue', 'Astro']
+const skills = ["Vue", "Astro"];
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = 'bold'
+const textCase = 'uppercase'
 ---
 
 <html lang="en">
@@ -19,6 +25,17 @@ const goal = 3;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontweight);
+        text-transform: var(--textCase);
+      }
+    </style>
   </head>
   <body>
     <a href="/">Home</a>
@@ -38,18 +55,30 @@ const goal = 3;
     </p>
     <p>Here are a new facts about me</p>
     <ul>
-        <li>My name is {identity.firstName}</li>
-        <li>I live in {identity.country} and i work as a {identity.occupation}</li>
-        {identity.hobbies.length >=2 &&
-            <li>My hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
-        }
+      <li>My name is {identity.firstName}</li>
+      <li>
+        I live in {identity.country} and i work as a {identity.occupation}
+      </li>
+      {
+        identity.hobbies.length >= 2 && (
+          <li>
+            My hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}
+          </li>
+        )
+      }
     </ul>
     <p>My skills are:</p>
     <ul>
-        {skills.map((skill) => <li>{skill}</li>)}
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
     {happy && <p>I am happ to be learning Astro</p>}
     {finished && <p>I finished this tutorial</p>}
-    {goal === 3 ? <p>My goal is to finish in 3 days</p> : <p>My goal is not 3 days</p>}
+    {
+      goal === 3 ? (
+        <p>My goal is to finish in 3 days</p>
+      ) : (
+        <p>My goal is not 3 days</p>
+      )
+    }
   </body>
 </html>
